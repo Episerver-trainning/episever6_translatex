@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Logon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogonResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTicketExpiry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTicketExpiryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckTicketExpiryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LogonSoapIn">
+    <wsdl:part name="parameters" element="tns:Logon" />
+  </wsdl:message>
+  <wsdl:message name="LogonSoapOut">
+    <wsdl:part name="parameters" element="tns:LogonResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTicketExpirySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTicketExpiry" />
+  </wsdl:message>
+  <wsdl:message name="CheckTicketExpirySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTicketExpiryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FreewayAuthSoap">
+    <wsdl:operation name="Logon">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">The logon method is used to authenticate the requesting user. The method takes two string parameters – Username and Password. Upon a successful call – a string containing a Ticket code is returned. This Ticket string is used to authenticate you on all subsequent method calls and expires after 60 minutes.</wsdl:documentation>
+      <wsdl:input message="tns:LogonSoapIn" />
+      <wsdl:output message="tns:LogonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTicketExpiry">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks to see how many minutes are remaining on the specified Ticket</wsdl:documentation>
+      <wsdl:input message="tns:CheckTicketExpirySoapIn" />
+      <wsdl:output message="tns:CheckTicketExpirySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FreewayAuthSoap" type="tns:FreewayAuthSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Logon">
+      <soap:operation soapAction="http://tempuri.org/Logon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTicketExpiry">
+      <soap:operation soapAction="http://tempuri.org/CheckTicketExpiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FreewayAuthSoap12" type="tns:FreewayAuthSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Logon">
+      <soap12:operation soapAction="http://tempuri.org/Logon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTicketExpiry">
+      <soap12:operation soapAction="http://tempuri.org/CheckTicketExpiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FreewayAuth">
+    <wsdl:port name="FreewayAuthSoap" binding="tns:FreewayAuthSoap">
+      <soap:address location="https://freeway.demo.lionbridge.com/vojo/FreewayAuth.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FreewayAuthSoap12" binding="tns:FreewayAuthSoap12">
+      <soap12:address location="https://freeway.demo.lionbridge.com/vojo/FreewayAuth.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

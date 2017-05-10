@@ -1,0 +1,109 @@
+﻿/****** Object:  Table [dbo].[tblTranslationProject]    Script Date: 10/14/2008 12:20:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTranslationProject](
+	[pkid] [int] IDENTITY(1,1) NOT NULL,
+	[projectname] [nvarchar](50) NULL,
+	[remoteid] [nvarchar](50) NULL,
+	[projectstatus] [int] NULL,
+	[workid] [uniqueidentifier] NULL,
+	[createddate]  AS (getdate()),
+	[alertemail] [nvarchar](255) NULL,
+	[sourceLanguage] [nvarchar](10) NULL,
+	[remotestatus] [int] NULL,
+	[creator] [nvarchar](50) NULL,
+	[connectorname] [nvarchar](255) NULL,
+	[isactive] [int] DEFAULT(1),
+ CONSTRAINT [PK_tblTranslationProject] PRIMARY KEY CLUSTERED 
+(
+	[pkid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblTranslationProjectItem]    Script Date: 10/14/2008 12:20:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTranslationProjectItem](
+	[pkid] [int] IDENTITY(1,1) NOT NULL,
+	[Indent] [int] NULL,
+	[page_link] [nvarchar](50) NULL,
+	[parent_link] [nvarchar](50) NULL,
+	[page_name] [nvarchar](255) NULL,
+	[workid] [uniqueidentifier] NULL,
+	[status] [int] NULL,
+	[remoteid] [nvarchar](50) NULL,
+	[remotestatus] [int] NULL,
+	[newpage_link] [nvarchar](50) NULL,
+	[itemtype] [int] NULL CONSTRAINT [DF_tblTranslationProjectItem_itemtype]  DEFAULT ((0)),
+ CONSTRAINT [PK_tblTranslationLog] PRIMARY KEY CLUSTERED 
+(
+	[pkid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblTranslationProjectItemData]    Script Date: 10/14/2008 12:20:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTranslationProjectItemData](
+	[pkid] [int] IDENTITY(1,1) NOT NULL,
+	[fkTranslationProjectItemId] [int] NULL,
+	[fkTranslationProjectLanguage] [nvarchar](50) NULL,
+	[remotestatus] [nchar](10) NULL,
+	[remoteId] [nvarchar](50) NULL,
+	[status] [int] NULL,
+	[data] [image] NULL,
+ CONSTRAINT [PK_tblTranslationProjectItemData] PRIMARY KEY CLUSTERED 
+(
+	[pkid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblTranslationProjectLanguage]    Script Date: 10/14/2008 12:20:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTranslationProjectLanguage](
+	[pkid] [int] IDENTITY(1,1) NOT NULL,
+	[projectid] [int] NULL,
+	[targetLanguage] [nvarchar](10) NULL,
+ CONSTRAINT [PK_tblTranslationProjectLanguage] PRIMARY KEY CLUSTERED 
+(
+	[pkid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[tblTranslationProjectProperty]    Script Date: 10/14/2008 12:20:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblTranslationProjectProperty](
+	[pkid] [int] IDENTITY(1,1) NOT NULL,
+	[fkprojectid] [int] NULL,
+	[propertyname] [nvarchar](50) NULL,
+	[propertyvalue] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tblTranslationProjectProperty] PRIMARY KEY CLUSTERED 
+(
+	[pkid] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+create table tbltranslationProjectLog
+(
+	pkid int identity primary key,
+	fkprojectid int,
+	occured datetime default getdate(),
+	message nvarchar(255)
+)
+go

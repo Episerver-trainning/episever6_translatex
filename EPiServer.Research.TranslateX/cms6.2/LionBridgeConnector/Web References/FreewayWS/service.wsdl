@@ -1,0 +1,1822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;Freeway Web Service (Vojo)&lt;/h3&gt;&lt;span style="color:#036; font-size:9pt;"&gt;If, like many of our clients, you have or are deploying a Content Management System (CMS), workflow or e-procurement system, or other forms of repository to manage your publishing processes, you should consider connecting your system directly to Freeway using Web Services. Lionbridge has implemented Freeway Web Services to automate the translation management process and content exchange. Connecting your CMS to Freeway eliminates the manual steps associated with file exchange and publishing of multilingual content.&lt;/span&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetCustomerAnalysisCodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AnalysisCodeLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerAnalysisCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerAnalysisCodesResult" type="tns:ArrayOfAnalysisCodeGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnalysisCodeGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AnalysisCodeGroup" nillable="true" type="tns:AnalysisCodeGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AnalysisCodeGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AnalysisCodes" type="tns:ArrayOfAnalysisCode" />
+        </s:sequence>
+        <s:attribute name="Level" type="s:int" use="required" />
+        <s:attribute name="Name" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfAnalysisCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AnalysisCode" nillable="true" type="tns:AnalysisCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AnalysisCode">
+        <s:attribute name="Name" type="s:string" />
+      </s:complexType>
+      <s:element name="AcceptOrRejectQuote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Action" type="tns:QuoteAction" />
+            <s:element minOccurs="0" maxOccurs="1" name="POReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="QuoteAction">
+        <s:restriction base="s:string">
+          <s:enumeration value="Reject" />
+          <s:enumeration value="Accept" />
+          <s:enumeration value="Rework" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AcceptOrRejectQuoteResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProjectInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RetrieveLineDetails" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Locale" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectDetails" type="tns:ProjectDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:IDValueItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalPrice" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMetaDataItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectOwner" type="tns:projectdetailProjectowner" />
+          <s:element minOccurs="0" maxOccurs="1" name="Center" type="tns:IDValueItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateSubmitted" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpectedStartingDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpectedDeliveryDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POReference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Origin" type="tns:projectdetailOrigin" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectManagers" type="tns:ArrayOfProjectdetailProjectmanager" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesManager" type="tns:projectdetailSalesmanager" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomReferences" type="tns:ArrayOfProjectdetailCustomreference" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tasks" type="tns:ArrayOfProjectdetailLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IDValueItem">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="ID" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfMetaDataItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MetaDataItem" nillable="true" type="tns:MetaDataItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MetaDataItem">
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Value" type="s:string" />
+      </s:complexType>
+      <s:complexType name="projectdetailProjectowner">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="projectdetailOrigin">
+        <s:restriction base="s:string">
+          <s:enumeration value="viaProjectManager" />
+          <s:enumeration value="viaPortal" />
+          <s:enumeration value="viaWebServices" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfProjectdetailProjectmanager">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectManager" type="tns:projectdetailProjectmanager" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="projectdetailProjectmanager">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Fullname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Level" type="s:integer" />
+      </s:complexType>
+      <s:complexType name="projectdetailSalesmanager">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Fullname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProjectdetailCustomreference">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomReference" type="tns:projectdetailCustomreference" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="projectdetailCustomreference">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="ID" type="s:string" />
+            <s:attribute name="Level" type="s:integer" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfProjectdetailLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tasks" type="tns:projectdetailLine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="projectdetailLine">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Task" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subtask" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceLanguage" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="TargetLanguage" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Component" type="tns:IDValueItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubjectMatter" type="tns:IDValueItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rate" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="UOM" type="tns:IDValueItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="Volume" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Subtotal" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="QuantitySplit" type="tns:ArrayOfIDValueItem" />
+        </s:sequence>
+        <s:attribute name="ID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfIDValueItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:IDValueItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="POReference" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpectedStartingDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpectedDeliveryDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMeta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMeta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Meta" nillable="true" type="tns:Meta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Meta">
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Value" type="s:string" />
+      </s:complexType>
+      <s:element name="CreateProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateProjectResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskToProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComponentID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubTaskID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Volume" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="UOMID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskToProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddTaskToProjectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFileToProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageIDs" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="Metadata" type="tns:ArrayOfMeta" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsReferenceMaterial" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddFileToProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddFileToProjectResult" type="tns:FileInfoList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FileInfoList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FileInfoItems" type="tns:ArrayOfFileInfo" />
+        </s:sequence>
+        <s:attribute name="ProjectID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FileInfo" nillable="true" type="tns:FileInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FileInfo">
+        <s:attribute name="FileID" type="s:string" />
+        <s:attribute name="Filename" type="s:string" />
+        <s:attribute name="SourceLanguageID" type="s:string" />
+        <s:attribute name="TargetLanguageID" type="s:string" />
+      </s:complexType>
+      <s:element name="SubmitProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubmitProjectResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForQuotation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForQuotationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SubmitForQuotationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbandonProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbandonProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AbandonProjectResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectStatusResult" type="tns:ProjectStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:ProjectDetail" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectStatusCode" type="tns:ProjectStatusCode" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateSubmitted" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubmittedBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpectedStartingDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpectedDeliveryDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectManager" type="tns:PMDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectDetail">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="ID" type="s:int" use="required" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="ProjectStatusCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSpecified" />
+          <s:enumeration value="Draft" />
+          <s:enumeration value="Quote" />
+          <s:enumeration value="Forecasted" />
+          <s:enumeration value="InEvaluation" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Booked" />
+          <s:enumeration value="InProduction" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="Closed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PMDetail">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="Email" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:element name="GetProjectStatusAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectStatusAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectStatusAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectFileByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectFileByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveProjectFileByIDResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectFileByFilename">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectFileByFilenameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveProjectFileByFilenameResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceLanguages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceLanguagesResult" type="tns:LanguageList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LanguageList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Languages" type="tns:ArrayOfLanguage" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfLanguage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Language" nillable="true" type="tns:Language" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Language">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetSourceLanguagesAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceLanguagesAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceLanguagesAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTargetLanguages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTargetLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTargetLanguagesResult" type="tns:LanguageList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTargetLanguagesAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTargetLanguagesAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTargetLanguagesAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubjectsResult" type="tns:SubjectsList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubjectsList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Subjects" type="tns:ArrayOfSubject" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfSubject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Subject" nillable="true" type="tns:Subject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Subject">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetSubjectsAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubjectsAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubjectsAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksResult" type="tns:TasksList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TasksList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Tasks" type="tns:ArrayOfTask" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Task" nillable="true" type="tns:Task" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Task">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetTasksAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTasksAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubTasks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubTasksResult" type="tns:SubTasksList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubTasksList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SubTasks" type="tns:ArrayOfSubTask" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfSubTask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubTask" nillable="true" type="tns:SubTask" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubTask">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetSubTasksAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubTasksAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubTasksAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComponents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComponentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetComponentsResult" type="tns:ComponentsList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ComponentsList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Components" type="tns:ArrayOfComponent" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfComponent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Component" nillable="true" type="tns:Component" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Component">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetComponentsAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComponentsAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetComponentsAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUOMs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUOMsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUOMsResult" type="tns:UOMsList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UOMsList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UOMs" type="tns:ArrayOfUOM" />
+        </s:sequence>
+        <s:attribute name="Version" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Method" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfUOM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UOM" nillable="true" type="tns:UOM" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UOM">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:element name="GetUOMsAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUOMsAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUOMsAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileStatusResult" type="tns:FileStatusList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FileStatusList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FileStatuses" type="tns:ArrayOfFileStatus" />
+        </s:sequence>
+        <s:attribute name="ProjectID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfFileStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FileStatus" nillable="true" type="tns:FileStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FileStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MetaData" type="tns:ArrayOfMeta" />
+        </s:sequence>
+        <s:attribute name="FileID" type="s:string" />
+        <s:attribute name="Filename" type="s:string" />
+        <s:attribute name="SourceLanguageID" type="s:string" />
+        <s:attribute name="TargetLanguageID" type="s:string" />
+        <s:attribute name="StatusID" type="s:string" />
+        <s:attribute name="StatusDescription" type="s:string" />
+      </s:complexType>
+      <s:element name="GetFileStatusAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileStatusAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileStatusAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectSummariesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumberOfProjects" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SortOrder" type="tns:SortOrder" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProjectStatusCode" type="tns:ProjectStatusCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="SortOrder">
+        <s:restriction base="s:string">
+          <s:enumeration value="MostRecent" />
+          <s:enumeration value="Oldest" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetProjectSummariesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectSummariesListResult" type="tns:ProjectSummaryList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectSummaryList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectSummaries" type="tns:ArrayOfProjectSummary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProjectSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectSummary" nillable="true" type="tns:ProjectSummary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectSummary">
+        <s:attribute name="ID" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+        <s:attribute name="ProjectStatusCode" type="tns:ProjectStatusCode" use="required" />
+      </s:complexType>
+      <s:element name="GetProjectSummariesListAsXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NumberOfProjects" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SortOrder" type="tns:SortOrder" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProjectStatusCode" type="tns:ProjectStatusCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectSummariesListAsXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectSummariesListAsXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="About">
+        <s:complexType />
+      </s:element>
+      <s:element name="AboutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AboutResult" type="tns:AboutDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AboutDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WrittenBy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactEmail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCustomerAnalysisCodesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerAnalysisCodes" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerAnalysisCodesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerAnalysisCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AcceptOrRejectQuoteSoapIn">
+    <wsdl:part name="parameters" element="tns:AcceptOrRejectQuote" />
+  </wsdl:message>
+  <wsdl:message name="AcceptOrRejectQuoteSoapOut">
+    <wsdl:part name="parameters" element="tns:AcceptOrRejectQuoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateProject" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTaskToProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTaskToProject" />
+  </wsdl:message>
+  <wsdl:message name="AddTaskToProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTaskToProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFileToProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFileToProject" />
+  </wsdl:message>
+  <wsdl:message name="AddFileToProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFileToProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitProject" />
+  </wsdl:message>
+  <wsdl:message name="SubmitProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitForQuotationSoapIn">
+    <wsdl:part name="parameters" element="tns:SubmitForQuotation" />
+  </wsdl:message>
+  <wsdl:message name="SubmitForQuotationSoapOut">
+    <wsdl:part name="parameters" element="tns:SubmitForQuotationResponse" />
+  </wsdl:message>
+  <wsdl:message name="AbandonProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:AbandonProject" />
+  </wsdl:message>
+  <wsdl:message name="AbandonProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:AbandonProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectStatusAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectStatusAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectStatusAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectStatusAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectFileByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectFileByID" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectFileByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectFileByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectFileByFilenameSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectFileByFilename" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectFileByFilenameSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectFileByFilenameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceLanguages" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceLanguagesAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceLanguagesAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceLanguagesAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceLanguagesAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTargetLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTargetLanguages" />
+  </wsdl:message>
+  <wsdl:message name="GetTargetLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTargetLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTargetLanguagesAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTargetLanguagesAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetTargetLanguagesAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTargetLanguagesAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectsAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubjectsAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetSubjectsAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubjectsAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubTasksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetSubTasksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubTasksAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubTasksAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetSubTasksAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubTasksAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetComponentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetComponents" />
+  </wsdl:message>
+  <wsdl:message name="GetComponentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetComponentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetComponentsAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetComponentsAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetComponentsAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetComponentsAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUOMsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUOMs" />
+  </wsdl:message>
+  <wsdl:message name="GetUOMsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUOMsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUOMsAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUOMsAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetUOMsAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUOMsAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetFileStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileStatusAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileStatusAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetFileStatusAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileStatusAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSummariesListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectSummariesList" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSummariesListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectSummariesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSummariesListAsXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectSummariesListAsXML" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSummariesListAsXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectSummariesListAsXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="AboutSoapIn">
+    <wsdl:part name="parameters" element="tns:About" />
+  </wsdl:message>
+  <wsdl:message name="AboutSoapOut">
+    <wsdl:part name="parameters" element="tns:AboutResponse" />
+  </wsdl:message>
+  <wsdl:portType name="VojoSoap">
+    <wsdl:operation name="GetCustomerAnalysisCodes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method allows retrieving the analysis codes for a specific customer. Analysis codes for a specific label can be retrieved by passing the name of the label as the "analysisCodeLabel" parameter (e.g. 'Development', 'Research', etc.). If all analysis codes should be returned, independently of their label, pass an empty string as the "analysisCodeLabel" parameter.</wsdl:documentation>
+      <wsdl:input message="tns:GetCustomerAnalysisCodesSoapIn" />
+      <wsdl:output message="tns:GetCustomerAnalysisCodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptOrRejectQuote">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method allows accepting or rejecting a quote. When doing so, the 'PO Reference' value can be updated by passing it in as parameter. If you do not need to update the 'PO Reference' value, simply pass an empty string. A quote, in order to be accepted or rejected, must have a status of 'forecasted'. The status of a quote can be determined by invoking the 'GetProjectInformation' method. Note that the 'Comments' parameter is ignored when accepting a quote.</wsdl:documentation>
+      <wsdl:input message="tns:AcceptOrRejectQuoteSoapIn" />
+      <wsdl:output message="tns:AcceptOrRejectQuoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get full details on the financials of the project. Financials will only be returned if project has a stutus of 'Forecasted', 'In Production', 'Completed', or 'Closed'.</wsdl:documentation>
+      <wsdl:input message="tns:GetProjectInformationSoapIn" />
+      <wsdl:output message="tns:GetProjectInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method initializes a new project header in Freeway. The parameters specify base settings for the new project such as project description, special instructions etc. Upon a successful call – a string containing a new Project ID is returned. This Project ID is then used in subsequent methods to add lines, files etc to the new project.</wsdl:documentation>
+      <wsdl:input message="tns:CreateProjectSoapIn" />
+      <wsdl:output message="tns:CreateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskToProject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method adds work tasks to the newly created project (or existing projects once production has not begun). If the call has been successful – a boolean of True will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:AddTaskToProjectSoapIn" />
+      <wsdl:output message="tns:AddTaskToProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFileToProject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a file to the specified project and language pairing(s).</wsdl:documentation>
+      <wsdl:input message="tns:AddFileToProjectSoapIn" />
+      <wsdl:output message="tns:AddFileToProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitProject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Once all tasks and files have been added to a project – this method is called to move the submitted project into production.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitProjectSoapIn" />
+      <wsdl:output message="tns:SubmitProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitForQuotation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Once all tasks and files have been added to a project – this method is called to submit the project for quotation.</wsdl:documentation>
+      <wsdl:input message="tns:SubmitForQuotationSoapIn" />
+      <wsdl:output message="tns:SubmitForQuotationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AbandonProject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method cancels the specified project as long as the project hasn’t entered the production phase. If the project is already in production but still requires termination – you will need to contact your associated PM through the normal channels.</wsdl:documentation>
+      <wsdl:input message="tns:AbandonProjectSoapIn" />
+      <wsdl:output message="tns:AbandonProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method retrieves the overall status of the specified project.</wsdl:documentation>
+      <wsdl:input message="tns:GetProjectStatusSoapIn" />
+      <wsdl:output message="tns:GetProjectStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatusAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method retrieves the overall status of the specified project in XML.</wsdl:documentation>
+      <wsdl:input message="tns:GetProjectStatusAsXMLSoapIn" />
+      <wsdl:output message="tns:GetProjectStatusAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the specified file from the project via the FileID.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveProjectFileByIDSoapIn" />
+      <wsdl:output message="tns:RetrieveProjectFileByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByFilename">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the specified file from the project via the Filename, SourceLangaugeID and TargetLanguageID.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveProjectFileByFilenameSoapIn" />
+      <wsdl:output message="tns:RetrieveProjectFileByFilenameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of source languages that are available to you.</wsdl:documentation>
+      <wsdl:input message="tns:GetSourceLanguagesSoapIn" />
+      <wsdl:output message="tns:GetSourceLanguagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguagesAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of source languages that are available to you.</wsdl:documentation>
+      <wsdl:input message="tns:GetSourceLanguagesAsXMLSoapIn" />
+      <wsdl:output message="tns:GetSourceLanguagesAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of target languages for the specified source language that are available to you.</wsdl:documentation>
+      <wsdl:input message="tns:GetTargetLanguagesSoapIn" />
+      <wsdl:output message="tns:GetTargetLanguagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguagesAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of target languages for the specified source language that are available to you.</wsdl:documentation>
+      <wsdl:input message="tns:GetTargetLanguagesAsXMLSoapIn" />
+      <wsdl:output message="tns:GetTargetLanguagesAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of your available subject matters.</wsdl:documentation>
+      <wsdl:input message="tns:GetSubjectsSoapIn" />
+      <wsdl:output message="tns:GetSubjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of your available subject matters.</wsdl:documentation>
+      <wsdl:input message="tns:GetSubjectsAsXMLSoapIn" />
+      <wsdl:output message="tns:GetSubjectsAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of the your available Tasks.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksSoapIn" />
+      <wsdl:output message="tns:GetTasksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of the your available Tasks.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksAsXMLSoapIn" />
+      <wsdl:output message="tns:GetTasksAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of the your available Sub-Tasks for the specified TaskID.</wsdl:documentation>
+      <wsdl:input message="tns:GetSubTasksSoapIn" />
+      <wsdl:output message="tns:GetSubTasksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasksAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of the your available Sub-Tasks for the specified TaskID.</wsdl:documentation>
+      <wsdl:input message="tns:GetSubTasksAsXMLSoapIn" />
+      <wsdl:output message="tns:GetSubTasksAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComponents">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of the your available Components.</wsdl:documentation>
+      <wsdl:input message="tns:GetComponentsSoapIn" />
+      <wsdl:output message="tns:GetComponentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetComponentsAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves an XML list of the your available Components.</wsdl:documentation>
+      <wsdl:input message="tns:GetComponentsAsXMLSoapIn" />
+      <wsdl:output message="tns:GetComponentsAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of the your available Units of measure.</wsdl:documentation>
+      <wsdl:input message="tns:GetUOMsSoapIn" />
+      <wsdl:output message="tns:GetUOMsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMsAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of the your available Units of measure.</wsdl:documentation>
+      <wsdl:input message="tns:GetUOMsAsXMLSoapIn" />
+      <wsdl:output message="tns:GetUOMsAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a status list in XML of files in the specified project.</wsdl:documentation>
+      <wsdl:input message="tns:GetFileStatusSoapIn" />
+      <wsdl:output message="tns:GetFileStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatusAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a status list in XML of files in the specified project.</wsdl:documentation>
+      <wsdl:input message="tns:GetFileStatusAsXMLSoapIn" />
+      <wsdl:output message="tns:GetFileStatusAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get project summaries list based on your specified criteria.</wsdl:documentation>
+      <wsdl:input message="tns:GetProjectSummariesListSoapIn" />
+      <wsdl:output message="tns:GetProjectSummariesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesListAsXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get project summaries list as XML based on your specified criteria.</wsdl:documentation>
+      <wsdl:input message="tns:GetProjectSummariesListAsXMLSoapIn" />
+      <wsdl:output message="tns:GetProjectSummariesListAsXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">About the service.</wsdl:documentation>
+      <wsdl:input message="tns:AboutSoapIn" />
+      <wsdl:output message="tns:AboutSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VojoSoap" type="tns:VojoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCustomerAnalysisCodes">
+      <soap:operation soapAction="http://tempuri.org/GetCustomerAnalysisCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptOrRejectQuote">
+      <soap:operation soapAction="http://tempuri.org/AcceptOrRejectQuote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInformation">
+      <soap:operation soapAction="http://tempuri.org/GetProjectInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <soap:operation soapAction="http://tempuri.org/CreateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskToProject">
+      <soap:operation soapAction="http://tempuri.org/AddTaskToProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFileToProject">
+      <soap:operation soapAction="http://tempuri.org/AddFileToProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitProject">
+      <soap:operation soapAction="http://tempuri.org/SubmitProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitForQuotation">
+      <soap:operation soapAction="http://tempuri.org/SubmitForQuotation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbandonProject">
+      <soap:operation soapAction="http://tempuri.org/AbandonProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatus">
+      <soap:operation soapAction="http://tempuri.org/GetProjectStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatusAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetProjectStatusAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByID">
+      <soap:operation soapAction="http://tempuri.org/RetrieveProjectFileByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByFilename">
+      <soap:operation soapAction="http://tempuri.org/RetrieveProjectFileByFilename" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguages">
+      <soap:operation soapAction="http://tempuri.org/GetSourceLanguages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguagesAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetSourceLanguagesAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguages">
+      <soap:operation soapAction="http://tempuri.org/GetTargetLanguages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguagesAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetTargetLanguagesAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap:operation soapAction="http://tempuri.org/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetSubjectsAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://tempuri.org/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetTasksAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasks">
+      <soap:operation soapAction="http://tempuri.org/GetSubTasks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasksAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetSubTasksAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponents">
+      <soap:operation soapAction="http://tempuri.org/GetComponents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponentsAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetComponentsAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMs">
+      <soap:operation soapAction="http://tempuri.org/GetUOMs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMsAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetUOMsAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatus">
+      <soap:operation soapAction="http://tempuri.org/GetFileStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatusAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetFileStatusAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesList">
+      <soap:operation soapAction="http://tempuri.org/GetProjectSummariesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesListAsXML">
+      <soap:operation soapAction="http://tempuri.org/GetProjectSummariesListAsXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <soap:operation soapAction="http://tempuri.org/About" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VojoSoap12" type="tns:VojoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCustomerAnalysisCodes">
+      <soap12:operation soapAction="http://tempuri.org/GetCustomerAnalysisCodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptOrRejectQuote">
+      <soap12:operation soapAction="http://tempuri.org/AcceptOrRejectQuote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInformation">
+      <soap12:operation soapAction="http://tempuri.org/GetProjectInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <soap12:operation soapAction="http://tempuri.org/CreateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTaskToProject">
+      <soap12:operation soapAction="http://tempuri.org/AddTaskToProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFileToProject">
+      <soap12:operation soapAction="http://tempuri.org/AddFileToProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitProject">
+      <soap12:operation soapAction="http://tempuri.org/SubmitProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitForQuotation">
+      <soap12:operation soapAction="http://tempuri.org/SubmitForQuotation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbandonProject">
+      <soap12:operation soapAction="http://tempuri.org/AbandonProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetProjectStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectStatusAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetProjectStatusAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByID">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveProjectFileByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectFileByFilename">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveProjectFileByFilename" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguages">
+      <soap12:operation soapAction="http://tempuri.org/GetSourceLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceLanguagesAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetSourceLanguagesAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguages">
+      <soap12:operation soapAction="http://tempuri.org/GetTargetLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTargetLanguagesAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetTargetLanguagesAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap12:operation soapAction="http://tempuri.org/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetSubjectsAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap12:operation soapAction="http://tempuri.org/GetTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetTasksAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasks">
+      <soap12:operation soapAction="http://tempuri.org/GetSubTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubTasksAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetSubTasksAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponents">
+      <soap12:operation soapAction="http://tempuri.org/GetComponents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetComponentsAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetComponentsAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMs">
+      <soap12:operation soapAction="http://tempuri.org/GetUOMs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUOMsAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetUOMsAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetFileStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileStatusAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetFileStatusAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesList">
+      <soap12:operation soapAction="http://tempuri.org/GetProjectSummariesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectSummariesListAsXML">
+      <soap12:operation soapAction="http://tempuri.org/GetProjectSummariesListAsXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="About">
+      <soap12:operation soapAction="http://tempuri.org/About" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Vojo">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;Freeway Web Service (Vojo)&lt;/h3&gt;&lt;span style="color:#036; font-size:9pt;"&gt;If, like many of our clients, you have or are deploying a Content Management System (CMS), workflow or e-procurement system, or other forms of repository to manage your publishing processes, you should consider connecting your system directly to Freeway using Web Services. Lionbridge has implemented Freeway Web Services to automate the translation management process and content exchange. Connecting your CMS to Freeway eliminates the manual steps associated with file exchange and publishing of multilingual content.&lt;/span&gt;</wsdl:documentation>
+    <wsdl:port name="VojoSoap" binding="tns:VojoSoap">
+      <soap:address location="https://freeway.demo.lionbridge.com/vojo/service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VojoSoap12" binding="tns:VojoSoap12">
+      <soap12:address location="https://freeway.demo.lionbridge.com/vojo/service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

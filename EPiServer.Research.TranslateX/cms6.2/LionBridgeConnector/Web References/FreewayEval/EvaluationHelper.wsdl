@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;Freeway Web Service (Vojo) - Evaluation Helper&lt;/h3&gt;&lt;span style="color:#036; font-size:9pt;"&gt;The methods in this service are purely for use while the service is being evaluated. These methods &lt;span style='color:#f00;'&gt;will not be available to you once you move to our production environment&lt;/span&gt; but are rather to help you in simulating project status changes and file retrieval.&lt;/span&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ChangeProjectStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProjectStatusCode" type="tns:ProjectStatusCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ProjectStatusCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSpecified" />
+          <s:enumeration value="Draft" />
+          <s:enumeration value="Quote" />
+          <s:enumeration value="Forecasted" />
+          <s:enumeration value="InEvaluation" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Booked" />
+          <s:enumeration value="InProduction" />
+          <s:enumeration value="Completed" />
+          <s:enumeration value="Closed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ChangeProjectStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeProjectStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SimulateFileTranslation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SimulateFileTranslationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SimulateFileTranslationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileTranslation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileData" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageIDs" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UploadFileTranslationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UploadFileTranslationResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectSourceFileByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectSourceFileByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveProjectSourceFileByIDResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectSourceFileByFilename">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ticket" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceLanguageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TargetLanguageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveProjectSourceFileByFilenameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveProjectSourceFileByFilenameResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ChangeProjectStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeProjectStatus" />
+  </wsdl:message>
+  <wsdl:message name="ChangeProjectStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeProjectStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SimulateFileTranslationSoapIn">
+    <wsdl:part name="parameters" element="tns:SimulateFileTranslation" />
+  </wsdl:message>
+  <wsdl:message name="SimulateFileTranslationSoapOut">
+    <wsdl:part name="parameters" element="tns:SimulateFileTranslationResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileTranslationSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFileTranslation" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileTranslationSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileTranslationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectSourceFileByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectSourceFileByID" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectSourceFileByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectSourceFileByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectSourceFileByFilenameSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectSourceFileByFilename" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveProjectSourceFileByFilenameSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveProjectSourceFileByFilenameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EvaluationHelperSoap">
+    <wsdl:operation name="ChangeProjectStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method allows you to modify your projects status.</wsdl:documentation>
+      <wsdl:input message="tns:ChangeProjectStatusSoapIn" />
+      <wsdl:output message="tns:ChangeProjectStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SimulateFileTranslation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method copies all files you have submitted for the specified project to the retrieval path. THis allows you to fully simulate the file retrieval process.</wsdl:documentation>
+      <wsdl:input message="tns:SimulateFileTranslationSoapIn" />
+      <wsdl:output message="tns:SimulateFileTranslationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileTranslation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method can be used to add files to your project retrieval area. This allows you to simulate receiving files back from us. Note: when using our live service - this task will be handled for you.</wsdl:documentation>
+      <wsdl:input message="tns:UploadFileTranslationSoapIn" />
+      <wsdl:output message="tns:UploadFileTranslationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the specified source file from the project via the FileID.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveProjectSourceFileByIDSoapIn" />
+      <wsdl:output message="tns:RetrieveProjectSourceFileByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByFilename">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the specified source file from the project via the Filename, SourceLangaugeID and TargetLanguageID.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveProjectSourceFileByFilenameSoapIn" />
+      <wsdl:output message="tns:RetrieveProjectSourceFileByFilenameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EvaluationHelperSoap" type="tns:EvaluationHelperSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeProjectStatus">
+      <soap:operation soapAction="http://tempuri.org/ChangeProjectStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SimulateFileTranslation">
+      <soap:operation soapAction="http://tempuri.org/SimulateFileTranslation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileTranslation">
+      <soap:operation soapAction="http://tempuri.org/UploadFileTranslation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByID">
+      <soap:operation soapAction="http://tempuri.org/RetrieveProjectSourceFileByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByFilename">
+      <soap:operation soapAction="http://tempuri.org/RetrieveProjectSourceFileByFilename" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EvaluationHelperSoap12" type="tns:EvaluationHelperSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeProjectStatus">
+      <soap12:operation soapAction="http://tempuri.org/ChangeProjectStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SimulateFileTranslation">
+      <soap12:operation soapAction="http://tempuri.org/SimulateFileTranslation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileTranslation">
+      <soap12:operation soapAction="http://tempuri.org/UploadFileTranslation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByID">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveProjectSourceFileByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveProjectSourceFileByFilename">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveProjectSourceFileByFilename" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EvaluationHelper">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;Freeway Web Service (Vojo) - Evaluation Helper&lt;/h3&gt;&lt;span style="color:#036; font-size:9pt;"&gt;The methods in this service are purely for use while the service is being evaluated. These methods &lt;span style='color:#f00;'&gt;will not be available to you once you move to our production environment&lt;/span&gt; but are rather to help you in simulating project status changes and file retrieval.&lt;/span&gt;</wsdl:documentation>
+    <wsdl:port name="EvaluationHelperSoap" binding="tns:EvaluationHelperSoap">
+      <soap:address location="https://freeway.demo.lionbridge.com/vojo/EvaluationHelper.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EvaluationHelperSoap12" binding="tns:EvaluationHelperSoap12">
+      <soap12:address location="https://freeway.demo.lionbridge.com/vojo/EvaluationHelper.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

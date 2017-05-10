@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modifications>
+<add path ="/configuration">
+	<appSettings>
+    <add key="translationconnector" value="EPiServer.Research.Connector.Language.XLIFF.Connector,EPiServer.Research.Connector.Language.XLIFFConnector" __keyAttributes="key"/>
+    <add key="translationws" value="https://freeway.demo.lionbridge.com/vojo/service.asmx" __keyAttributes="key"/>
+    <add key="translationauthws" value="https://freeway.demo.lionbridge.com/vojo/FreewayAuth.asmx" __keyAttributes="key"/>
+    <add key="translationuser" value="username here" __keyAttributes="key"/>
+    <add key="translationpwd" value="password here" __keyAttributes="key"/>
+    <add key="xliffworkpath" value="episerver\web\util\translationtemp" __keyAttributes="key"/>
+	</appSettings>
+</add>
+</modifications>

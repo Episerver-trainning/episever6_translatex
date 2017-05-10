@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+  <language name="English" id="en">
+    <translationlanguages>
+      <en>en-us</en>
+      <sv>sv-se</sv>
+      <de>de-de</de>
+      <dk>dk-da</dk>
+      <fr>fr-fr</fr>
+      <es>es-es</es>
+      <no>nn-no</no>
+      <fi>fi-fi</fi>
+      <nl>nl-nl</nl>
+    </translationlanguages>
+  </language>
+
+  <language name="svenska" id="sv">
+    <translationlanguages>
+      <en>en-us</en>
+      <sv>sv-se</sv>
+      <de>de-de</de>
+      <dk>dk-da</dk>
+      <fr>fr-fr</fr>
+      <es>es-es</es>
+      <no>nn-no</no>
+      <fi>fi-fi</fi>
+      <nl>nl-nl</nl>
+    </translationlanguages>
+  </language>
+</languages>

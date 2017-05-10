@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package version="1.0" id="EPiServer.Research.TranslateX.Installer.52SP1" executionOrder="0">
+  <action displayName="EPiServer.Research.TranslateX.Installer.52SP1" scriptPath="Install EPiServer.Research.TranslateX.Installer.52SP1.ps1" actionType="Install">
+    <description></description>
+    <features>
+      <!--
+        Optional features on the format
+        <feature id="featureId" displayName="Import Content" />
+      -->
+      
+      <feature id="applicationFiles" displayName="Application files" />
+    </features>
+  </action>
+</package>
+

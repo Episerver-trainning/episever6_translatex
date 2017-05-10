@@ -1,0 +1,495 @@
+﻿/******* Grid/Table class ******/
+.listbox .contentArea .grid
+{
+	margin: 0 1px;
+	border: 0;
+}
+
+.grid
+{
+	border: 1px solid #ccc;
+}
+
+/* Grid header area rarely used */
+.grid .top
+{
+    border: 1px solid White;
+    border-bottom: 1px solid #b4b4b4;
+    background-color: #ececec;
+    padding: 10px 15px;
+    background-image: url(images/grid_bg.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    margin: 0;
+}
+.contentArea .grid .header
+{
+	border: 1px solid White;
+    border-bottom: 1px solid #b4b4b4;
+	background-color: #ececec;
+	background-image: url(images/grid_bg.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    padding: 1.2em;
+    min-height: 0;
+    color: #555;
+}
+.contentArea .grid .header h1
+{
+	color: #555;
+}
+.contentArea .grid .header h1 span
+{
+	position: static;
+	width: auto;
+	background-image: none;
+	display: inline;
+}
+.grid table
+{
+    width: 100%;
+    border-collapse: separate;
+    background-color: #fafafa;
+}
+
+.grid th a
+{
+    display: block;
+    padding: 5px;
+}
+
+.grid th a:hover
+{
+    background-color: #cccccc;
+}
+
+.grid th
+{
+    padding: 4px;
+    border: 0;
+    border-bottom: 1px solid #d4d4d4;
+    background-color: #ececec;
+    background-image: url(images/grid_bg.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    text-align: left;
+    vertical-align: text-bottom;
+}
+
+.grid a.ascending
+{
+    background-image: url(images/ascending.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    padding-right: 16px;
+}
+
+.grid a.descending
+{
+    background-image: url(images/descending.png);
+    background-repeat: no-repeat;
+    background-position: center right;
+    padding-right: 16px;
+}
+
+.grid td,
+.grid tr.alternating td
+{
+	background-image: url(images/oddRowBg.png);
+	background-position: top;
+	background-repeat: repeat-x;
+	background-color: #f0f0f0;
+	color: #333333;
+	padding: 0.5em;
+	margin: 0;
+}
+.grid tr.alternating td
+{
+	background-image: url(images/evenRowBg.png);
+	background-position: bottom;
+	background-color: #ffffff;
+}
+
+.grid tr.selected td
+{
+	background-image: url(images/selectedRowBg.png);
+	background-color: Transparent;
+	font-weight: bold;
+}
+
+.grid .footer
+{
+    position: relative;
+    height: 16px;
+    border: 1px solid White;
+    border-bottom: none;
+    margin: 0;
+    background-color: #ececec;
+    padding: 7px;
+    background-image: url(images/grid_bg.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    text-align: center;
+}
+
+.grid .count
+{
+    position: absolute;
+    left: 5px;
+    top: 7px;
+}
+
+.grid .footer .items
+{
+    position: absolute;
+    right: 5px;
+    top: 4px;
+}
+
+/*********************************/
+.oddRow,
+.evenRow
+ {
+	background-image: url(images/oddRowBg.png);
+	background-position: top;
+	background-repeat: repeat-x;
+	background-color: #f0f0f0;
+	border-top: 1px solid #c5c5c5;
+	border-bottom: 1px solid #ffffff;
+	color: #333333;
+	width: 100%;
+	float: left;
+	margin: 0;	
+}
+
+.evenRow {
+	background-image: url(images/evenRowBg.png);
+	background-position: bottom;
+	background-color: #ffffff;
+}  
+
+
+
+
+/*******  Popup Window *******/
+.popupWindow
+{
+           border: 1px solid #666; 
+           width: 300px;
+           padding: 1em;
+           background-color: #fff;
+}
+
+/*******  Modal Window *******/
+
+.modalWindow
+{
+    width: 400px;
+    /* reset possibly inherited styles */
+    text-align: left;
+    float: none;
+    overflow: visible;
+    line-height: normal;
+}
+
+.modalWindow .innerLeft
+{
+    background: url(images/modalBg.png) top left no-repeat;
+    padding: 0 0 0 4px;
+    margin: 0;
+}
+
+.modalWindow .innerRight
+{
+    background: url(images/modalBg.png) top right no-repeat;
+    padding: 0 4px 0 0;
+    margin: 0;
+    overflow: visible;
+}
+
+.modalWindow .bottom
+{
+    background: url(images/modalCornersBg.png) bottom right no-repeat;
+    height: 9px;
+    margin: 0 0 0 12px;
+}
+
+.modalWindow .bottom div
+{
+    background: url(images/modalCornersBg.png) bottom left no-repeat;
+    height: 9px;
+    width: 12px;
+    margin: 0 0 0 0px;
+}
+
+.wide
+{
+    width: 550px;
+}
+
+.widecenter
+{
+    width: 95%; 
+}
+
+
+.modalWindow .head
+{
+    position: relative;
+    /*color: White;*/
+    background: url(images/window_header_bg.png) top left repeat-x;
+    height: 54px;
+    padding: 5px 0 5px 10px;
+    overflow: hidden;
+    text-align:center;    
+    vertical-align:middle;
+}
+.modalWindow .head .title
+{
+    /*float: left;*/
+    line-height: normal;
+}
+.modalWindow .head input.closeButton
+{
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 5px;
+    right: 3px;
+}
+.modalWindow .contentArea
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: #fcfcfc url(images/modalContentBg.png) bottom left repeat-x;
+    width: 100%;
+    overflow: hidden;
+    height:500px;
+}
+
+.modalWindow .contentArea .content
+{
+    border: 0;
+    padding: 0;
+    margin: 20px;
+    overflow: auto;
+    min-height: 50px;
+    color: #000;
+}
+
+.modalWindow .contentArea h1
+{
+           font-size: 1.2em;
+           line-height: 1em;
+    margin: 0.1em 0 0.2em 0;
+}
+.modalWindow .contentArea h2
+{
+           font-size: 1em;
+           font-weight: bold;
+           margin: 0.1em 0 0.2em 0;
+}
+
+.modalPopupBg
+{
+    background-color: Black;
+    opacity: 0.40;
+    filter: alpha(opacity = 40);
+}
+
+
+
+
+.contentArea .buttonAreaBottom
+{
+           padding: 1em;
+           border-top: 1px solid #ddd;
+           overflow: hidden;
+}
+.modalWindow .contentArea .content .buttonAreaBottom
+{
+           margin: 1em 0 0 0;
+           padding-bottom: 0;
+}
+.modalWindow .contentArea .buttonAreaBottom
+{
+           margin: 1em 20px 0 20px;
+}
+
+.buttonAreaBottom a.button
+{
+           float:right;
+}
+
+.additionalNavigation
+{
+           margin-top:           1.2em;
+}
+
+/* ------------Common button ------------ */
+a.button
+{
+           background: transparent url("images/Buttons/bgbuttona.png") no-repeat top right;
+           color: #444;
+           display: inline-block;
+           font: normal 12px arial, sans-serif;
+           height: 24px;
+           margin-right: 6px;
+           padding-right: 18px; /* sliding doors padding */
+           text-decoration: none;
+           line-height: 24px;
+           outline-style: none;
+           overflow: hidden;
+           white-space: nowrap;
+           line-height: 14px;
+}
+
+a.button img
+{
+           cursor: pointer;
+           /*vertical-align: bottom;*/
+           margin-right: 1px;
+           margin-left: -4px;
+}
+
+a.button span 
+{
+           cursor: pointer;
+           background: transparent url("images/Buttons/bgbuttonspan.png") no-repeat;
+           /* inline-block makes IE click on span corrupt design (no background change).*/
+           display: inline-block;
+           padding: 5px 0 5px 15px;
+}
+
+a.button:hover
+{
+           color: #000;
+}
+
+a.button:active,
+a.button:focus
+{          
+           background-position: 100% -24px;
+           color: #000;
+}
+
+a.button:active span,
+a.button:focus span 
+{
+           background-position: 0px -24px ;
+}
+
+/* Add more styles for disabled buttons */
+a.button[disabled="disabled"]
+{
+	opacity: 0.5;
+    filter: alpha(opacity = 50);
+}
+.seperator
+{
+    border-top: 1px solid White;
+    border-bottom: 1px solid #b4b4b4;	
+        
+    line-height:0px;    
+	font-size:1px;  
+	margin-top:10px;
+	position:inherit;
+}
+
+div.divrow
+{	
+	clear:both;
+	width:100%;
+	margin:10px;
+	overflow:hidden;
+}
+div.divcolumn
+{
+	float:left;
+	
+	width: 75%;
+}
+div.divcolumn1
+{
+	float:left;
+	width: 20%;	
+}
+div.divcolumn h3
+{
+	display: inline;
+}
+form
+{
+	margin:0;
+	padding:0;
+}
+h1, h2, h3, h4, h5
+{
+	font-family:Arial;
+    color: #555;
+}
+
+h1
+{
+    font-size: 1.5em;
+    line-height: 1.2em;
+    margin: 0.4em 0 0.2em 0;
+    font-weight: normal;
+}
+
+h2
+{
+    font-size: 1.2em;
+    margin: 1.2em 0 0.3em 0;
+}
+
+h3
+{
+    font-size: 1.1em;
+    margin: 0.6em 0 0.3em 0;
+}
+
+h4
+{
+    font-size: 1.0em;
+    margin: 0.6em 0 0.3em 0;
+}
+
+
+.pluginarea
+{
+	margin:10px 10px 10px 10px;
+}
+.wide550
+{
+	width: 550px;
+}
+p
+{
+    margin: 0.4em 0 0.6em 0;
+    color:#555;
+}
+label
+{
+	color:#555;
+}
+.wizard
+{
+	margin: 12px;
+}
+.pagegrid
+{
+	margin:2px 0px 2px 2px;
+	overflow:auto;
+	height:280px;
+	width:500px
+}
+.wide500
+{
+	width:500px;
+}
+.black
+{
+	color:Black;
+}

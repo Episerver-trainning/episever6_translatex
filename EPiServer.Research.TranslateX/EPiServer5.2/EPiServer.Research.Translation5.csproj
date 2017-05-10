@@ -1,0 +1,237 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{35B96128-6809-449F-BDB6-6D686C8D32CA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EPiServer.Research.Translation5</RootNamespace>
+    <AssemblyName>EPiServer.Research.Translation5</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RefPath>$(MSBuildProjectDirectory)\refs\52</RefPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RefPath>$(MSBuildProjectDirectory)\refs\52</RefPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug51|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RefPath>$(MSBuildProjectDirectory)\refs\51</RefPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release51|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RefPath>$(MSBuildProjectDirectory)\refs\51</RefPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPiServer, Version=6.0.530.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Code\Libraries\EPiServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.BaseLibrary, Version=6.0.530.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Code\Libraries\EPiServer.BaseLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Configuration, Version=6.0.530.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Code\Libraries\EPiServer.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Web\cmsr2.j.ep.se\web\bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\1.gif" />
+    <Content Include="Images\2.gif" />
+    <Content Include="Images\3.gif" />
+    <Content Include="Images\blank.gif" />
+    <Content Include="Images\m.gif" />
+    <Content Include="Images\mm.gif" />
+    <Content Include="Images\p.gif" />
+    <Content Include="Images\pp.gif" />
+    <Content Include="Lang\translationlangs.xml" />
+    <Content Include="Styles\Grid.css" />
+    <Content Include="Styles\Images\ascending.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttona.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttona_dark.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttona_light.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttonspan.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttonspan_dark.png" />
+    <Content Include="Styles\Images\Buttons\bgbuttonspan_light.png" />
+    <Content Include="Styles\Images\Buttons\closeButton.png" />
+    <Content Include="Styles\Images\modalBg.png" />
+    <Content Include="Styles\Images\modalContentBg.png" />
+    <Content Include="Styles\Images\modalCornersBg.png" />
+    <Content Include="Styles\Images\modalTopBg.png" />
+    <Content Include="Styles\Images\Buttons\nexticon.png" />
+    <Content Include="Styles\Images\Buttons\previousicon.png" />
+    <Content Include="Styles\Images\descending.png" />
+    <Content Include="Styles\Images\evenRowBg.png" />
+    <Content Include="Styles\Images\grid_bg.png" />
+    <Content Include="Styles\Images\oddRowBg.png" />
+    <Content Include="Styles\Images\selectedRowBg.png" />
+    <Content Include="Styles\Images\window_header_bg.png" />
+    <Content Include="UI\EditProject.aspx" />
+    <Content Include="UI\ImportPage.aspx" />
+    <Content Include="UI\PageTranslation.ascx" />
+    <Content Include="UI\StyleHeader.ascx" />
+    <Content Include="UI\ViewDetails.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\ConnectorDefinition.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\EPLangUtil.cs" />
+    <Compile Include="Core\ItemType.cs" />
+    <Compile Include="Core\Manager.cs" />
+    <Compile Include="Core\Project.cs" />
+    <Compile Include="Core\ProjectItemStatus.cs" />
+    <Compile Include="Core\TranslationFileLoader.cs" />
+    <Compile Include="Core\TranslationPageLoader.cs" />
+    <Compile Include="Core\UntouchPathModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Sender.cs" />
+    <Compile Include="UI\CustomerWizardStep.cs" />
+    <Compile Include="UI\EditProject.aspx.cs">
+      <DependentUpon>EditProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\EditProject.aspx.designer.cs">
+      <DependentUpon>EditProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ImportPage.aspx.cs">
+      <DependentUpon>ImportPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ImportPage.aspx.designer.cs">
+      <DependentUpon>ImportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PageTranslation.ascx.cs">
+      <DependentUpon>PageTranslation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\PageTranslation.ascx.designer.cs">
+      <DependentUpon>PageTranslation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StyleHeader.ascx.cs">
+      <DependentUpon>StyleHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\StyleHeader.ascx.designer.cs">
+      <DependentUpon>StyleHeader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewDetails.aspx.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewDetails.aspx.designer.cs">
+      <DependentUpon>ViewDetails.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\EPiServer.Research.Translation4.Common.csproj">
+      <Project>{0583E4FD-12F8-45B6-9EFC-B0BDD498006E}</Project>
+      <Name>EPiServer.Research.Translation4.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>16785</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>copy $(TargetPath) $(ProjectDir)\..\Build\bin\
+copy $(ProjectDir)UI\*.as?x  $(ProjectDir)\..\Build\EPiServer.Research.Translation4\UI
+copy $(ProjectDir)Images\*.*  $(ProjectDir)\..\Build\EPiServer.Research.Translation4\Images\
+copy $(ProjectDir)Styles\*.*  $(ProjectDir)\..\Build\EPiServer.Research.Translation4\Styles\
+copy $(ProjectDir)Styles\Images\*.*  $(ProjectDir)\..\Build\EPiServer.Research.Translation4\Styles\Images\
+copy $(ProjectDir)Styles\Images\Buttons\*.*  $(ProjectDir)\..\Build\EPiServer.Research.Translation4\Styles\Images\Buttons\
+copy $(ProjectDir)Lang\*.*  $(ProjectDir)\..\Build\Lang\
+
+
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

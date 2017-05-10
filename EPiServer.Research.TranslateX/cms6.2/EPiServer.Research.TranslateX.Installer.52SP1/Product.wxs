@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="85158eba-dc1b-4a9c-a3bd-7c56139b006c" Name="EPiServer.Research.TranslateX.Installer.52SP1" Language="1033" Version="1.0.0.0" Manufacturer="EPiServer.Research.TranslateX.Installer.52SP1" UpgradeCode="81b3ce53-e414-4ccd-ba63-b6abc96474cf">
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="EPiServer.Research.TranslateX.Installer.52SP1.cab" EmbedCab="yes" />
+
+    <Property Id='EPISERVER_BIN'>
+      <DirectorySearch Id='BinariesFolderSearch' Path='[ProgramFilesFolder]\EPiServer\CMS\$(var.Version)\bin' Depth='0' />
+    </Property>
+
+    <!-- Prerequisites -->
+    <CustomAction Id="CA_Err_PrereqNotInstalled" Error="EPiServer CMS $(var.Version) must be installed to install 'EPiServer.Research.TranslateX.Installer.52SP1'" />
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_Err_PrereqNotInstalled" Before="CostInitialize">
+        <![CDATA[NOT Installed AND (NOT EPISERVER_BIN)]]>
+      </Custom>
+    </InstallExecuteSequence>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="EPiServerDir" Name="EPiServer">
+          <Directory Id="CmsDir" Name="CMS">
+            <Directory Id="VersionDir" Name="$(var.Version)">
+              <Directory Id="InstallDir" Name="Install">
+                <Directory Id="ModulesDir" Name="Modules">
+                  <Directory Id="ModuleDir" Name="EPiServer.Research.TranslateX.Installer.52SP1">
+<Directory Id="ApplicationFilesDir" Name="ApplicationFiles" FileSource="..\Build">
+  <Component Id="component0" Guid="04459CEA-5391-4E91-BFB9-9EA8C1413E80">
+    <File Id="file0" Name="sql.txt" />    
+    <File Id="file2" Name="TranslationConnector.config" />
+    <File Id="file3" Name="web.config.xmlupdate" />
+  </Component>
+  <Directory Id="directory0" Name="lang">
+    <Component Id="component1" Guid="532BB0F8-0959-453B-94BF-5B989745398B">
+      <File Id="file4" Name="translationlangs.xml" />
+    </Component>
+  </Directory>
+  <Directory Id="directory2" Name="EPiServer.Research.Translation4">
+    <Directory Id="directory1" Name="UI">
+      <Component Id="component2" Guid="B015DE92-3D1B-4837-894E-2A0A5D3EE4D4">
+        <File Id="file5" Name="EditProject.aspx" />
+        <File Id="file6" Name="ImportFirstStep.ascx" />
+        <File Id="file7" Name="ImportPage.aspx" />
+        <File Id="file8" Name="LionBridgeLastStep.ascx" />
+        <File Id="file9" Name="PageTranslation.ascx" />
+        <File Id="file10" Name="TranslationUserSettings.ascx" />
+        <File Id="file11" Name="ViewDetails.aspx" />
+        <File Id="file12" Name="XLiffWizardLastStep.ascx" />
+        <File Id="file46" Name="StyleHeader.ascx" />
+      </Component>
+    </Directory>
+    <Directory Id="directory3" Name="Styles">
+      <Component Id="component3" Guid="068DF0D9-F1FF-40CF-8D34-0475CA5669C1">
+        <File Id="file13" Name="Grid.css" />
+      </Component>
+      <Directory Id="directory4" Name="Images">
+        <Component Id="component4" Guid="EA3352E5-EE60-466D-82ED-347B374B0F89">
+          <File Id="file14" Name="ascending.png" />
+          <File Id="file15" Name="descending.png" />
+          <File Id="file16" Name="evenRowBg.png" />
+          <File Id="file17" Name="grid_bg.png" />
+          <File Id="file18" Name="modalBg.png" />
+          <File Id="file19" Name="modalContentBg.png" />
+          <File Id="file20" Name="modalCornersBg.png" />
+          <File Id="file21" Name="modalTopBg.png" />
+          <File Id="file22" Name="oddRowBg.png" />
+          <File Id="file23" Name="selectedRowBg.png" />
+          <File Id="file24" Name="window_header_bg.png" />
+        </Component>
+        <Directory Id="directory5" Name="Buttons">
+          <Component Id="component5" Guid="CC941FC7-7166-4CDA-96E6-9F92430DD270">
+            <File Id="file25" Name="bgbuttona.png" />
+            <File Id="file26" Name="bgbuttona_dark.png" />
+            <File Id="file27" Name="bgbuttona_light.png" />
+            <File Id="file28" Name="bgbuttonspan.png" />
+            <File Id="file29" Name="bgbuttonspan_dark.png" />
+            <File Id="file30" Name="bgbuttonspan_light.png" />
+            <File Id="file31" Name="closeButton.png" />
+            <File Id="file32" Name="nexticon.png" />
+            <File Id="file33" Name="previousicon.png" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Directory Id="directory6" Name="Images">
+      <Component Id="component6" Guid="1EE65175-0CC4-4B33-ACBD-01A4CB31C986">
+        <File Id="file34" Name="1.gif" />
+        <File Id="file35" Name="2.gif" />
+        <File Id="file36" Name="3.gif" />
+        <File Id="file37" Name="blank.gif" />
+        <File Id="file38" Name="m.gif" />
+        <File Id="file39" Name="mm.gif" />
+        <File Id="file40" Name="p.gif" />
+        <File Id="file41" Name="pp.gif" />
+      </Component>
+    </Directory>
+  </Directory>
+  <Directory Id="directory7" Name="bin">
+    <Component Id="component7" Guid="A616DCED-70A9-4CF5-9D97-2C302C0C85B6">
+      <File Id="file42" Name="EPiServer.Research.Connector.Language.LionBridge.dll" />
+      <File Id="file43" Name="EPiServer.Research.Connector.Language.XLIFFConnector.dll" />
+      <File Id="file44" Name="EPiServer.Research.Translation4.Common.dll" />
+      <File Id="file45" Name="EPiServer.Research.Translation5.dll" />
+    </Component>
+  </Directory>
+</Directory>
+                  </Directory>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+
+    <DirectoryRef Id="ModuleDir">
+      <Component Id="InstallScriptComp" Guid="63b8da06-d174-4f04-a1f1-11e95135cb4d">
+        <File Id="PowerShellScript" Name="Install EPiServer.Research.TranslateX.Installer.52SP1.ps1" Source="$(sys.SOURCEFILEDIR)"/>
+        <File Id="ModuleMetaData" Name="EPiServer.Research.TranslateX.Installer.52SP1.metadata" Source="$(sys.SOURCEFILEDIR)"/>
+      </Component>
+    </DirectoryRef>
+
+<ComponentGroup Id="FileComponents">
+  <ComponentRef Id="component0" />
+  <ComponentRef Id="component1" />
+  <ComponentRef Id="component2" />
+  <ComponentRef Id="component3" />
+  <ComponentRef Id="component4" />
+  <ComponentRef Id="component5" />
+  <ComponentRef Id="component6" />
+  <ComponentRef Id="component7" />
+</ComponentGroup>
+
+    <Feature Id="ProductFeature" Title="EPiServer.Research.TranslateX.Installer.52SP1" Level="1">
+      <ComponentRef Id="InstallScriptComp" />
+      <ComponentGroupRef Id="FileComponents" />
+		</Feature>
+    <UIRef Id="WixUI_Mondo" />
+	</Product>
+</Wix>
